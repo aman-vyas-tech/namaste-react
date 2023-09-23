@@ -2,7 +2,6 @@
   "name": "namate-react",
   "version": "1.0.0",
   "description": "This is my react learning project",
-  "main": "index.js",
   "scripts": {
     "test": "jest"
   },
@@ -10,7 +9,7 @@
     "type": "git",
     "url": "git+https://github.com/aman-vyas-tech/namaste-react.git"
   },
-  "keywords": [ ],
+  "keywords": [],
   "author": "Aman Vyas (aman03040@gmail.com)",
   "license": "ISC",
   "bugs": {
@@ -18,6 +17,12 @@
   },
   "homepage": "https://github.com/aman-vyas-tech/namaste-react#readme",
   "devDependencies": {
-    "parcel": "^2.9.3"
-  }
+    "parcel": "^2.9.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "browsersList": ["Last 2 Chrome versions", "Last 3 Edge versions"]
 }
