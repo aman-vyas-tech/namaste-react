@@ -1,17 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const parent = React.createElement("div", {id: "parent" }, 
-[React.createElement("div", {id: "child" },
-[React.createElement("h1", {id: "heading" }, "Aman - Nested Heading"),
-React.createElement("h1", {id: "heading1" }, "Nested Heading 1")]),
-React.createElement("div", {id: "child" },
-[React.createElement("h1", {id: "heading" }, "Nested Heading"),
-React.createElement("h1", {id: "heading1" }, "Nested Heading 1123")])]);
+// React.createElement ==> Object not html ==> render on dom  ==> Html element.
 
+const element = React.createElement("h1", {id: "heading"}, "This is H1 tag");
 
-const heading = React.createElement("h1", {id: 'heading2'}, "Hello World from React");
-const root = ReactDOM.createRoot(document.getElementById('id'));
-// root.render(heading);
-root.render(parent);
-console.log(heading, root,parent);
+// JSX transpiled by Pracel(Babel inside) before reaches to JS engine.
+const jsxElement = <h1 id="heading"> JSX Heading Element</h1>
+const root = ReactDOM.createRoot(document.getElementById("id"));
+root.render(jsxElement);
