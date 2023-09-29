@@ -1,56 +1,71 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-// React.createElement ==> Object not html ==> render on dom  ==> Html element.
+/**
+* Header
+    Logo
+    Nav Bar
+* Body
+    Search
+    Restaurent Container
+    Restaurent Card
+* Footer
+    Copyright
+    Address
+    Contact 
+*/
 
-// const element = React.createElement("h1", {id: "heading"}, "This is H1 tag");
-
-// JSX transpiled by Pracel(Babel inside) before reaches to JS engine.
-// const jsxElement = <h1 id="heading"> JSX Heading Element</h1>;
-// const title = (
-//   <h1 id="heading" className="head">
-//     JSX Heading Element 1
-//   </h1>
-// );
-
-const TitleComponent = function() { 
+const Header = ()=> {
     return (
-    <div id="title">
-        <h1 id="title">React title component with normal js func</h1>
-    </div>
-)};
+        <div className="header">
+            <div className="logo-cotainer">
+                <img className="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRarbFGOA8xl_IGcaB291JF16ZfgqEnfC5OxZn9xRFS&s"/>
+            </div>
+            <div className="nav-items">
+                <ul>
+                    <li>Home</li>
+                    <li>About Us</li>
+                    <li>Contact</li>
+                    <li>Cart</li>
+                    
+                </ul>
+            </div>
+        </div>
+    )
+};
 
-// new jsc element to render inside title element
-const newElement = (
-    <h3>New JSX element rendered in title element</h3>
-)
+const styleCard = {
+    backgroundColor: "pink"
+}
 
-// jsx element
-const titleElement = (
-    <div>
-        {newElement}
-        <h1> New title Element</h1>
-    </div>
-    
-);
+const RestaurentCard = () => {
+    return (
+        <div className="res-card" style={styleCard}>
+            <h3>Radha Krishna</h3>
+        </div>
+    )
+}
 
-const Subject = () => {return (
-    <div id="subject">
-        <p>This ia  an article on component compisition where one component nested into anoter</p>
-    </div>
-)};
+const Body = ()=> {
+    return (
+        <div className="body">
+            <div className="search">
+                Search
+            </div>
+            <div className="res-container">
+                <RestaurentCard/>
+            </div>
+        </div>
+    )
+}
 
-//React Func component which return jsx and here nested component is called component composition.
-const HeadingComponent = () => (
-<div id="container">
-    <TitleComponent/>
-    <TitleComponent></TitleComponent>
-    {TitleComponent()}
-    <h2>{titleElement}</h2>
-    <h1 id="heading" className="head">JSX Heading Element 1</h1>
-    <Subject/>
-</div>
-);
-
+const AppLayout = ()=> {
+    return (
+        <div id="app" className="app">
+            <Header/>
+            <Body/>
+        </div>
+    )
+}
 const root = ReactDOM.createRoot(document.getElementById("id"));
-root.render(<HeadingComponent />);
+root.render(<AppLayout />);
