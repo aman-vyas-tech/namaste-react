@@ -13,22 +13,28 @@ import ReactDOM from "react-dom/client";
 //   </h1>
 // );
 
-const TitleComponent = () => (
+const TitleComponent = function() { 
+    return (
     <div id="title">
-        <h1 id="title">React title</h1>
+        <h1 id="title">React title component with normal js func</h1>
     </div>
-);
+)};
 
-const Subject = () => (
+const titleElement = (
+    <h1>New title Element</h1>
+)
+
+const Subject = () => {return (
     <div id="subject">
         <p>This ia  an article on component compisition where one component nested into anoter</p>
     </div>
-);
+)};
 
 //React Func component which return jsx and here nested component is called component composition.
 const HeadingComponent = () => (
 <div id="container">
     <TitleComponent/>
+    <h2>{titleElement}</h2>
     <h1 id="heading" className="head">JSX Heading Element 1</h1>
     <Subject/>
 </div>
