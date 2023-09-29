@@ -20,9 +20,19 @@ const TitleComponent = function() {
     </div>
 )};
 
-const titleElement = (
-    <h1>New title Element</h1>
+// new jsc element to render inside title element
+const newElement = (
+    <h3>New JSX element rendered in title element</h3>
 )
+
+// jsx element
+const titleElement = (
+    <div>
+        {newElement}
+        <h1> New title Element</h1>
+    </div>
+    
+);
 
 const Subject = () => {return (
     <div id="subject">
@@ -34,6 +44,8 @@ const Subject = () => {return (
 const HeadingComponent = () => (
 <div id="container">
     <TitleComponent/>
+    <TitleComponent></TitleComponent>
+    {TitleComponent()}
     <h2>{titleElement}</h2>
     <h1 id="heading" className="head">JSX Heading Element 1</h1>
     <Subject/>
