@@ -43,15 +43,15 @@ const Body = () => {
       },
     },
   ];
-  const [listOfRes] = useState(listOfRes2);
+  const [listOfRes, setListOfRes] = useState(listOfRes2);
   return (
     <div className="body">
       <div className="filter">
         <button
           className="filter-btn"
           onClick={() => {
-            listOfRes = listOfRes.filter((res) => res.info.avgRating > 4);
-            console.log(listOfRes);
+            const filteredList = listOfRes.filter((res) => res.info.avgRating > 4);
+            setListOfRes(filteredList);
           }}
         >
           {" "}
