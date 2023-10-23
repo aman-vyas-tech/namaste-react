@@ -1,56 +1,65 @@
 import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
-  let listOfRes2 = [
-    {
-      info: {
-        id: "395202",
-        name: "McDonald's Gourmet Burger Collection",
-        cloudinaryImageId: "rqdtdkc3iqzxodv6vtyf",
-        costForTwo: "\u20B9600 for two",
-        cuisines: ["Burgers", "Beverages", "Cafe", "Desserts"],
-        avgRating: 4,
-        avgRatingString: "4.0",
-        sla: {
-          deliveryTime: 41,
-          lastMileTravel: 1.4,
-          serviceability: "SERVICEABLE",
-          slaString: "41 mins",
-          lastMileTravelString: "1.4 km",
-          iconType: "ICON_TYPE_EMPTY",
-        },
-      },
-    },
-    {
-      info: {
-        id: "395201",
-        name: "McDonald's Gourmet Burger Collection",
-        cloudinaryImageId: "rqdtdkc3iqzxodv6vtyf",
-        costForTwo: "\u20B9600 for two",
-        cuisines: ["Burgers", "Beverages", "Cafe", "Desserts"],
-        avgRating: 4.4,
-        avgRatingString: "4.0",
-        sla: {
-          deliveryTime: 41,
-          lastMileTravel: 1.4,
-          serviceability: "SERVICEABLE",
-          slaString: "41 mins",
-          lastMileTravelString: "1.4 km",
-          iconType: "ICON_TYPE_EMPTY",
-        },
-      },
-    },
-  ];
-  const [listOfRes, setListOfRes] = useState(listOfRes2);
-  return (
+  const [listOfRes, setListOfRes] = useState([]);
+  const [searchText, setSearchText] = useState([]);
+  const [filtertedListOfRes, setFiltertedListOfRes] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
+    const response = await data.json();
+    console.log(response);
+    setListOfRes(
+      response?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
+    setFiltertedListOfRes(response?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+      ?.restaurants)
+  };
+
+  return listOfRes.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       <div className="filter">
+        <div className="search">
+          <input
+            type="text"
+            className="search-box"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button
+            onClick={() => {
+              const filteredRes = searchText
+                ? listOfRes.filter((item) =>
+                    item.info.name
+                      .toLowerCase()
+                      .includes(searchText.toLowerCase())
+                  )
+                : listOfRes;
+              filteredRes? setFiltertedListOfRes(filteredRes): setFiltertedListOfRes(listOfRes);
+            }}
+          >
+            Search
+          </button>
+        </div>
         <button
           className="filter-btn"
           onClick={() => {
-            const filteredList = listOfRes.filter((res) => res.info.avgRating > 4);
+            const filteredList = listOfRes.filter(
+              (res) => res.info.avgRating > 4
+            );
             setListOfRes(filteredList);
           }}
         >
@@ -59,7 +68,7 @@ const Body = () => {
         </button>
       </div>
       <div className="res-container">
-        {listOfRes.map((res) => {
+        {filtertedListOfRes.map((res) => {
           return <RestaurantCard key={res.info.id} resData={res} />;
         })}
       </div>

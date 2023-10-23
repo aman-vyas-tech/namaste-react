@@ -20,12 +20,12 @@
     font-size: 24px;
 }
 
-.search {
+/* .search {
     width: 100px;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid black;
-}
+} */
 
 .res-card {
     width: 200px;
@@ -51,4 +51,30 @@
 .filter-btn {
     cursor: pointer;
     margin: 10px;;
+}
+
+.shimmer-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.shimmer-card {
+    display: flex;
+    width: 50px;
+    margin: 20px;
+    height: 100px;
+    background-color: #f0f0f0;
+}
+
+.filter {
+    display: flex;
+    justify-content: space-between;
+}
+
+.search {
+    margin: 5px;
+}
+
+.search-box {
+    padding: 10px;
 }
