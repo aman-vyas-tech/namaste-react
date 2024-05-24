@@ -19,10 +19,10 @@ const Body = () => {
     const response =  await data.json();
     console.log(response);
     setListOfRes(
-      response?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+      response?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
-    setFiltertedListOfRes(response?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+    setFiltertedListOfRes(response?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
       ?.restaurants);
   };
 
